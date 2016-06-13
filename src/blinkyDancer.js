@@ -8,6 +8,4 @@ class BlinkyDancer extends Dancer {
   }
 }
 
-var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
-  return new BlinkyDancer(top, left, timeBetweenSteps);
-};
+window['BlinkyDancer'] = BlinkyDancer;

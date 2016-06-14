@@ -16,6 +16,7 @@ class Ghost extends ImageDancer {
     this.left = this.left + (Math.random() * 5 - 2.5);
   }
   setRandomDestination() {
+    if (this.isBusy) { return; }
     let x = this.left + Math.random() * distToRandomlyWalk - distToRandomlyWalk / 2;
     let y = this.top + Math.random() * distToRandomlyWalk - distToRandomlyWalk / 2;
     this.setDestination(x, y);

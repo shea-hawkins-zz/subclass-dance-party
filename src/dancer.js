@@ -9,6 +9,10 @@ class Dancer {
     this.destination = [];
     this.timeBetweenSteps = timeBetweenSteps;
     this.setDestination(50, 50);
+    this.isBusy = false;
+  }
+  computeDistance(entity) {
+    return Math.sqrt(Math.pow(entity.left - this.left, 2) + Math.pow(entity.top - this.top, 2)); 
   }
   step() {
     if (this.destination.length === 2) {
@@ -21,8 +25,12 @@ class Dancer {
     x = x > c.width ? (c.width - x) / 2 : x;
     y = y < 0 ? -y / 2 : y;
     y = y > c.height ? (c.height - y) / 2 : y;
-
     this.destination = [x, y]; 
+  }
+  setFixedDestination(x, y) {
+    this.isBusy = true;
+    this.setDestination(x, y);
+    setTimeout(() => this.isBusy = false, 3000);
   }
   stepToPoint() {
     let [destX, destY] = this.destination;

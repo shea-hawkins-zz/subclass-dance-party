@@ -7,11 +7,9 @@ class GhostHunter extends ImageDancer {
     this.beamTarget = [];
     this.beamOn = false;
   }
-  computeDistance(entity) {
-      return Math.sqrt(Math.pow(entity.left - this.left, 2) + Math.pow(entity.top - this.top, 2)); 
-  }
   step(entities) {
     super.step();
+    if (this.isBusy) { return; }
     var closest = _(entities).chain().filter(e => e instanceof Ghost).reduce(findClosest.bind(this)).value();
     if (closest) {
       this.setDestination(closest.left, closest.top);

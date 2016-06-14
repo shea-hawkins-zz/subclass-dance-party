@@ -23,12 +23,12 @@ $(document).ready(function() {
     _(entities).chain().filter(function(entity) {
       return entity instanceof Ghost;
     }).each(function(entity, i, collection) {
-      entity.setDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - (ctx.canvas.height - 300));
+      entity.setFixedDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - (ctx.canvas.height - 300));
     });
     _(entities).chain().filter(function(entity) {
       return entity instanceof GhostHunter;
     }).each(function(entity, i, collection) {
-      entity.setDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 300);
+      entity.setFixedDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 300);
     });
   });
 

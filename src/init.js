@@ -1,5 +1,8 @@
 $(document).ready(function() {
-  window.dancers = [];
+  let ctx = $('#danceCanvas')[0].getContext('2d');
+  let renderables = [];
+  let renderer = new Renderer(ctx, renderables);
+  requestAnimationFrame(renderer.render.bind(renderer));
 
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -15,22 +18,19 @@ $(document).ready(function() {
      * A new object of the given type will be created and added
      * to the stage.
      */
-    var danceContext = $('#danceCanvas')[0].getContext('2d');
 
-    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
-    
-    var dancerMakerFunctionArgs = $(this).data('dancer-maker-function-arguments') || [];
-    // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-    // make a dancer with a random position
-    
-    var dancer = new dancerMakerFunction(
-      danceContext,
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
+    // Get the dancer constructor name and arguments for it
+    var dancerClass = $(this).data('dancer-maker-function-name');
+    var dancerArgs = $(this).data('dancer-maker-function-arguments') || [];
+
+    // make a dancer with a random position    
+    var dancer = new window[dancerClass](
+      ctx.canvas.width * Math.random(),
+      ctx.canvas.height * Math.random(),
       Math.random() * 1000,
-      ...dancerMakerFunctionArgs
+      ...dancerArgs
     );
+    renderables.push(dancer);
   });
 });
 

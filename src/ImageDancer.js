@@ -1,14 +1,14 @@
 class ImageDancer extends Dancer {
-  constructor(ctx, top, left, timeToWait, src, className) {
-    super(ctx, top, left, timeToWait, className);
-    this.$node = $(`<img src="${src}" class="dancer ${className}" />`);
-    // this.setPosition(top, left);
+  constructor(top, left, timeToWait, src) {
+    super(top, left, timeToWait);
+
     this.imageObj = new Image();
     this.imageObj.src = src;
+    this.imageLoaded = false;
+    this.imageObj.onload = () => this.imageLoaded = true;
   }
-  step() {
-    super.step();
-    this.imageObj && this.ctx.drawImage(this.imageObj, this.left, this.top);
+  render(ctx) {
+    this.imageLoaded && ctx.drawImage(this.imageObj, this.left, this.top);
   }
 }
 

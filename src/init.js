@@ -9,6 +9,13 @@ $(document).ready(function() {
     requestAnimationFrame(rec);
   });
 
+  $('.lineUpButton').on('click', function(event) {
+    entities.forEach(function(e, i, entities) {
+      console.log(i);
+      e.stepToPoint((1200 / entities.length) * i, 1000);
+    });
+  });
+
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.

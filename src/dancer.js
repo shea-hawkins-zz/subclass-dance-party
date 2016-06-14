@@ -7,4 +7,8 @@ class Dancer {
     this.timeBetweenSteps = timeBetweenSteps;
   }
   step() {}
+  stepToPoint(x, y) {
+    this.top = x;
+    this.left = y;
+  }
 }

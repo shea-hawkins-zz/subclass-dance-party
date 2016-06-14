@@ -6,4 +6,5 @@ class Dancer {
     this.left = left;
     this.timeBetweenSteps = timeBetweenSteps;
   }
+  step() {}
 }

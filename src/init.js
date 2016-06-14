@@ -1,8 +1,13 @@
 $(document).ready(function() {
   let ctx = $('#danceCanvas')[0].getContext('2d');
-  let renderables = [];
-  let renderer = new Renderer(ctx, renderables);
-  requestAnimationFrame(renderer.render.bind(renderer));
+  let entities = [];
+  let renderer = new Renderer(ctx, entities);
+  let stepper = new Stepper(entities);
+  requestAnimationFrame(function rec() {
+    stepper.step();
+    renderer.render();
+    requestAnimationFrame(rec);
+  });
 
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -30,7 +35,7 @@ $(document).ready(function() {
       Math.random() * 1000,
       ...dancerArgs
     );
-    renderables.push(dancer);
+    entities.push(dancer);
   });
 });
 

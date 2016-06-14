@@ -15,10 +15,11 @@ class GhostHunter extends ImageDancer {
     var closest = _(entities).chain().filter(e => e instanceof Ghost).reduce(findClosest.bind(this)).value();
     if (closest) {
       this.setDestination(closest.left, closest.top);
-      if (this.computeDistance(closest) < 50 && !this.beamOn) {
+      if (this.computeDistance(closest) < 200 && !this.beamOn) {
         this.toggleBeam();
         setTimeout(this.toggleBeam.bind(this), 100);
-        this.setBeamTarget(closest.left, closest.top);
+        this.setBeamTarget(closest);
+        this.killTarget(entities, closest);
       }
     }
 
@@ -26,8 +27,12 @@ class GhostHunter extends ImageDancer {
       return this.computeDistance(entity) < this.computeDistance(mem) ? entity : mem;
     }
   }
-  setBeamTarget(x, y) {
-    this.beamTarget = [x, y];
+  setBeamTarget(entity) {
+    this.beamTarget = [entity.left, entity.top];
+  }
+  killTarget(entities, target) {
+    var index = entities.indexOf(target);
+    entities.splice(index, 1);
   }
   toggleBeam() {
     this.beamOn = !this.beamOn;
@@ -39,6 +44,7 @@ class GhostHunter extends ImageDancer {
       let [tx, ty] = this.beamTarget;
       ctx.beginPath();
       ctx.strokeStyle = '#f00';
+      ctx.lineWidth = 15;
       ctx.moveTo(this.left + 50, this.top + 50);
       ctx.lineTo(tx + 50, ty + 50);
       ctx.stroke();

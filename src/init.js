@@ -1,5 +1,6 @@
 $(document).ready(function() {
   let ctx = $('#danceCanvas')[0].getContext('2d');
+  fitToContainer();
   let entities = [];
   let renderer = new Renderer(ctx, entities);
   let stepper = new Stepper(entities);
@@ -11,7 +12,6 @@ $(document).ready(function() {
 
   $('.lineUpButton').on('click', function(event) {
     entities.forEach(function(e, i, entities) {
-      console.log(i);
       e.stepToPoint((1200 / entities.length) * i, 1000);
     });
   });
@@ -37,8 +37,8 @@ $(document).ready(function() {
 
     // make a dancer with a random position    
     var dancer = new window[dancerClass](
-      ctx.canvas.width * Math.random(),
       ctx.canvas.height * Math.random(),
+      ctx.canvas.width * Math.random(),
       Math.random() * 1000,
       ...dancerArgs
     );
@@ -46,3 +46,8 @@ $(document).ready(function() {
   });
 });
 
+function fitToContainer() {
+  let canvas = $('#danceCanvas')[0];
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+};

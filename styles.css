@@ -23,6 +23,9 @@ body, a:link, a:visited, a:active{
 .dancer{
   position:absolute;
 }
+.danceFloor{
+  height: 100%;
+}
 .murrayDancer{
   .border: 1px solid gray;
 }

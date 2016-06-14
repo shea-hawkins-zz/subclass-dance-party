@@ -23,12 +23,9 @@ $(document).ready(function() {
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
     // make a dancer with a random position
-    var imageObj = new Image();
-    imageObj.onload = function() {
-      danceContext.drawImage(imageObj, 69, 50);
-    };
-    imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+    
     var dancer = new dancerMakerFunction(
+      danceContext,
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000,

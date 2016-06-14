@@ -1,6 +1,6 @@
 class BlinkyDancer extends Dancer {
-  constructor(top, left, timeBetweenSteps) {
-    super(top, left, timeBetweenSteps);
+  constructor(ctx, top, left, timeBetweenSteps) {
+    super(ctx, top, left, timeBetweenSteps);
   }
   step() {
     super.step();

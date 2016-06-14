@@ -3,7 +3,7 @@ class Stepper {
     this.steppables = steppables;
   }
 
-  step() {
-    this.steppables.forEach(r => r.step && r.step());
+  step(entities) {
+    this.steppables.forEach(r => r.step && r.step(entities));
   }
 }

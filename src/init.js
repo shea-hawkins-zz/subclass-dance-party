@@ -5,7 +5,7 @@ $(document).ready(function() {
   let renderer = new Renderer(ctx, entities);
   let stepper = new Stepper(entities);
   requestAnimationFrame(function rec() {
-    stepper.step();
+    stepper.step(entities);
     renderer.render();
     requestAnimationFrame(rec);
   });

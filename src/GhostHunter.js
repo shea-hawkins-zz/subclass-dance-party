@@ -8,7 +8,7 @@ class GhostHunter extends ImageDancer {
     super(top, left, timeBetweenSteps, src);
   }
   step() {
-    this.left = this.left + (Math.random() * 10 - 5);
+    super.step();
   }
 }
 

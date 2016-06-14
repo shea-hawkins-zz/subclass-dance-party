@@ -17,7 +17,7 @@ class GhostHunter extends ImageDancer {
       this.setDestination(closest.left, closest.top);
       if (this.computeDistance(closest) < 200 && !this.beamOn) {
         this.toggleBeam();
-        setTimeout(this.toggleBeam.bind(this), 100);
+        setTimeout(this.toggleBeam.bind(this), 500);
         this.setBeamTarget(closest);
         this.killTarget(entities, closest);
       }

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Object Dance Party</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="lib/jquery.js"></script>
@@ -11,17 +12,21 @@
     <script src="src/MurrayDancer.js"></script>
     <script src="src/Renderer.js"></script>
     <script src="src/Stepper.js"></script>
-    <script src="src/GhostDancer.js"></script>
+    <script src="src/Ghost.js"></script>
     <script src="src/GhostHunter.js"></script>
   </head>
   <body>
-    <div class="topbar">
-      <span class="title">object dance party</span>
-      <a href="#" class="addDancerButton" data-dancer-maker-function-name="MurrayDancer"  data-dancer-maker-function-arguments="">BILL MURRAY</a>
-      <a href="#" class="addDancerButton" data-dancer-maker-function-name="Ghost"  data-dancer-maker-function-arguments="">Spawn Ghost</a>
-      <a href="#" class="addDancerButton" data-dancer-maker-function-name="GhostHunter"  data-dancer-maker-function-arguments="">Spawn Ghosthunter</a>
-      <a href="#" class="lineUpButton" data-dancer-maker-function-arguments="">Line Up</a>
-    </div>
+    <nav>
+      <div class="nav-wrapper blue-grey darken-1">
+        <a href="#!" class="brand-logo">Ghost Hunters</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="waves-effect waves-light btn cyan darken-1" id="lineUp">Line Up</a></li>
+          <li><a class="waves-effect waves-light btn addDancerButton cyan darken-1" data-dancer-maker-function-name="Ghost" data-dancer-spawn-count="5" >Spawn Ghost</a></li>
+          <li><a class="waves-effect waves-light btn addDancerButton cyan darken-1"  data-dancer-maker-function-name="GhostHunter">Spawn Ghosthunter</a></li>  
+          <li><a class="waves-effect waves-light btn-large addDancerButton cyan darken-1" data-dancer-maker-function-name="MurrayDancer">BILL MURRAY</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="danceFloor">
       <canvas id="danceCanvas"></canvas>      
     </div>

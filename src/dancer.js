@@ -16,6 +16,12 @@ class Dancer {
     }
   }
   setDestination(x, y) {
+    let c = window['canvas'];
+    x = x < 0 ? -x / 2 : x;
+    x = x > c.width ? (c.width - x) / 2 : x;
+    y = y < 0 ? -y / 2 : y;
+    y = y > c.height ? (c.height - y) / 2 : y;
+
     this.destination = [x, y]; 
   }
   stepToPoint() {

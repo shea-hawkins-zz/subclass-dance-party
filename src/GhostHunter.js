@@ -6,9 +6,25 @@ class GhostHunter extends ImageDancer {
     var src = hunterImages.shift();
     hunterImages.push(src);
     super(top, left, timeBetweenSteps, src);
+    this.beamTarget = [];
   }
   step() {
     super.step();
+  }
+  setBeamTarget(x, y) {
+    // do stuff
+  }
+  render(ctx) {
+    super.render(ctx);
+    // render beam if on
+    if (this.beamTarget.length === 2) {
+      let [tx, ty] = this.beamTarget;
+      ctx.beginPath();
+      ctx.strokeStyle = '#f00';
+      ctx.moveTo(this.left, this.top);
+      ctx.lineTo(tx, ty);
+      ctx.stroke();
+    }
   }
 }
 

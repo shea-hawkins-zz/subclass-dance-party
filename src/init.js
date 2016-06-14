@@ -9,7 +9,7 @@ $(document).ready(function() {
     renderer.render();
     requestAnimationFrame(rec);
   });
-  
+
   ctx.canvas.addEventListener('mousedown', function(evt) {
     var mousePos = getMousePos(ctx.canvas, evt);
     entities.forEach((entity) => {
@@ -18,7 +18,6 @@ $(document).ready(function() {
       }
     });    
   });
-
 
   $('.lineUpButton').on('click', function(event) {
     entities.forEach(function(e, i, entities) {
@@ -45,6 +44,7 @@ function fitToContainer() {
   let canvas = $('#danceCanvas')[0];
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
+  window['canvas'] = canvas;
 }
 
 function getMousePos(canvas, evt) {

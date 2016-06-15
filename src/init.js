@@ -1,48 +1,68 @@
 $(document).ready(function() {
   let ctx = $('#danceCanvas')[0].getContext('2d');
+  fitToContainer();
   let entities = [];
   let renderer = new Renderer(ctx, entities);
   let stepper = new Stepper(entities);
   requestAnimationFrame(function rec() {
-    stepper.step();
+    stepper.step(entities);
     renderer.render();
     requestAnimationFrame(rec);
   });
 
-  $('.lineUpButton').on('click', function(event) {
-    entities.forEach(function(e, i, entities) {
-      console.log(i);
-      e.stepToPoint((1200 / entities.length) * i, 1000);
+  ctx.canvas.addEventListener('mousedown', function(evt) {
+    var mousePos = getMousePos(ctx.canvas, evt);
+    entities.forEach((entity) => {
+      if (entity instanceof GhostHunter) {
+        entity.setBusyDestination(mousePos.x, mousePos.y);
+      }
+    });    
+  });
+
+  $('#lineUp').on('click', function(event) {
+
+    _(entities).chain().filter(function(entity) {
+      return entity instanceof Ghost;
+    }).each(function(entity, i, collection) {
+      entity.setBusyDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - (ctx.canvas.height - 100));
+    });
+    _(entities).chain().filter(function(entity) {
+      return entity instanceof GhostHunter;
+    }).each(function(entity, i, collection) {
+      entity.setBusyDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 300);
     });
   });
 
   $('.addDancerButton').on('click', function(event) {
-    /* This function sets up the click handlers for the create-dancer
-     * buttons on dancefloor.html. You should only need to make one small change to it.
-     * As long as the "data-dancer-maker-function-name" attribute of a
-     * class="addDancerButton" DOM node matches one of the names of the
-     * maker functions available in the global scope, clicking that node
-     * will call the function to make the dancer.
-     */
-
-    /* dancerMakerFunctionName is a string which must match
-     * one of the dancer maker functions available in global scope.
-     * A new object of the given type will be created and added
-     * to the stage.
-     */
-
-    // Get the dancer constructor name and arguments for it
     var dancerClass = $(this).data('dancer-maker-function-name');
     var dancerArgs = $(this).data('dancer-maker-function-arguments') || [];
-
+    var dancerCount = Number($(this).data('dancer-spawn-count')) || 1;
     // make a dancer with a random position    
-    var dancer = new window[dancerClass](
-      ctx.canvas.width * Math.random(),
-      ctx.canvas.height * Math.random(),
-      Math.random() * 1000,
-      ...dancerArgs
-    );
-    entities.push(dancer);
+    for (var i = 0; i < dancerCount; i++) {
+      var dancer = new window[dancerClass](
+        ctx.canvas.height * Math.random(),
+        ctx.canvas.width * Math.random(),
+        Math.random() * 1000,
+        ...dancerArgs
+      );
+      entities.push(dancer); 
+    }
+    
+    
   });
 });
 
+function fitToContainer() {
+  let canvas = $('#danceCanvas')[0];
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  window['canvas'] = canvas;
+}
+
+function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}

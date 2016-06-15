@@ -1,0 +1,22 @@
+{
+  "name": "2016-06-subclass-dance-party",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shea-hawkins/2016-06-subclass-dance-party.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shea-hawkins/2016-06-subclass-dance-party/issues"
+  },
+  "homepage": "https://github.com/shea-hawkins/2016-06-subclass-dance-party#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}

@@ -6,9 +6,8 @@ class Dancer {
   constructor(top, left, timeBetweenSteps) {
     this.top = top;
     this.left = left;
-    this.destination = [];
+    this.destination = [500, 500];
     this.timeBetweenSteps = timeBetweenSteps;
-    this.setDestination(50, 50);
     this.isBusy = false;
   }
   computeDistance(entity) {

@@ -31,6 +31,7 @@ class GhostHunter extends ImageDancer {
   killTarget(entities, target) {
     var index = entities.indexOf(target);
     entities.splice(index, 1);
+    entities.push(new ParticleEffect(target.left, target.top, 80, 80, 40));
   }
   toggleBeam() {
     this.beamOn = !this.beamOn;

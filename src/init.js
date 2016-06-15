@@ -29,7 +29,7 @@ $(document).ready(function() {
     _(entities).chain().filter(function(entity) {
       return entity instanceof GhostHunter;
     }).each(function(entity, i, collection) {
-      entity.setBusyDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 100);
+      entity.setBusyDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 300);
     });
   });
 

@@ -11,6 +11,13 @@ body, a:link, a:visited, a:active{
 }
 .title, .addDancerButton, .lineUpButton{
 }
+.scoreboard{
+  padding:1% 2%;
+}
+.chip{
+  margin-right: 1em;
+  margin-left: 1em;
+}
 .topbar{
   height:32px;
   background-color: #555;

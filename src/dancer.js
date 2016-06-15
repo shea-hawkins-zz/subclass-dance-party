@@ -27,7 +27,7 @@ class Dancer {
     y = y > c.height ? (c.height - y) / 2 : y;
     this.destination = [x, y]; 
   }
-  setFixedDestination(x, y) {
+  setBusyDestination(x, y) {
     this.isBusy = true;
     this.setDestination(x, y);
     setTimeout(() => this.isBusy = false, 3000);

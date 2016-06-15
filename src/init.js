@@ -14,21 +14,22 @@ $(document).ready(function() {
     var mousePos = getMousePos(ctx.canvas, evt);
     entities.forEach((entity) => {
       if (entity instanceof GhostHunter) {
-        entity.setDestination(mousePos.x, mousePos.y);
+        entity.setBusyDestination(mousePos.x, mousePos.y);
       }
     });    
   });
 
   $('#lineUp').on('click', function(event) {
+
     _(entities).chain().filter(function(entity) {
       return entity instanceof Ghost;
     }).each(function(entity, i, collection) {
-      entity.setFixedDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - (ctx.canvas.height - 300));
+      entity.setBusyDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - (ctx.canvas.height - 100));
     });
     _(entities).chain().filter(function(entity) {
       return entity instanceof GhostHunter;
     }).each(function(entity, i, collection) {
-      entity.setFixedDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 300);
+      entity.setBusyDestination((ctx.canvas.width / collection.length) * i, ctx.canvas.height - 100);
     });
   });
 

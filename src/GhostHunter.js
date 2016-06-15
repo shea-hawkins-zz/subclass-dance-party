@@ -41,8 +41,12 @@ class GhostHunter extends ImageDancer {
     if (this.beamOn) {
       let [tx, ty] = this.beamTarget;
       ctx.beginPath();
-      ctx.strokeStyle = '#f00';
-      ctx.lineWidth = 15;
+      var gradient = ctx.createLinearGradient(this.left + 50, this.top + 50, tx + 50, ty + 50);
+      gradient.addColorStop(0, 'white');
+      gradient.addColorStop(1, 'blue');
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
       ctx.moveTo(this.left + 50, this.top + 50);
       ctx.lineTo(tx + 50, ty + 50);
       ctx.stroke();
